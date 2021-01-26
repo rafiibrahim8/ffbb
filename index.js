@@ -51,7 +51,7 @@ app.get('/search', function (req, res) {
     });
 });
 
-app.post('/qq',function(req,res){
+app.post('/qq', function(req,res){
     if(!req.body.query){
         res.redirect('/400');
         return;
@@ -78,8 +78,12 @@ app.get('/unknown', function(req,res){
     res.render('unknown.pug');
 });
 
-app.get('/400',function(req,res){
+app.get('/400', function(req,res){
     res.end('You have sent an invalid request.');
+});
+
+app.get('/robots.txt', function(req,res){
+    res.end('User-agent: *\nDisallow: /\n');
 });
 
 app.get('*', function (req, res) {
