@@ -1,0 +1,114 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        meta(name="description" content="")
+        meta(name="robots" content="noindex, nofollow")
+        title FFBB | Was I online?
+        link(href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css")
+        link(href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet")
+        link(href="css/sb-admin-2.min.css" rel="stylesheet")
+    body#page-top
+        #wrapper
+            #content-wrapper.d-flex.flex-column
+                #content
+                    nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
+                        form.d-sm-inline-block.form-inline.mr-auto.ml-md-3.my-2.my-md-0.mw-100.navbar-search
+                            .container.my-auto
+                                h3 FFBB
+                        ul.navbar-nav.ml-auto
+                            li.nav-item.dropdown.no-arrow
+                                a#userDropdown.nav-link.dropdown-toggle(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                    span.mr-2.d-lg-inline.text-gray-600.small #{user_name}
+                                    img.img-profile.rounded-circle(src="vendor/fontawesome-free/svgs/regular/grin-beam.svg")
+                    .container-fluid
+                        .row
+                            .col-xl-3.col-md-6.mb-4
+                                .card.border-left-primary.shadow.h-100.py-2
+                                    .card-body
+                                        .row.no-gutters.align-items-center
+                                            .col.mr-2
+                                                .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
+                                                    | Online Hours (Total)
+                                                .h5.mb-0.font-weight-bold.text-gray-800 #{total_online_hours}/#{total_record_hours}
+                                            .col-auto
+                                                i.fas.fa-chart-line.fa-2x.text-gray-300
+                            .col-xl-3.col-md-6.mb-4
+                                .card.border-left-success.shadow.h-100.py-2
+                                    .card-body
+                                        .row.no-gutters.align-items-center
+                                            .col.mr-2
+                                                .text-xs.font-weight-bold.text-success.text-uppercase.mb-1
+                                                    | Average Online Hours/Day
+                                                .h5.mb-0.font-weight-bold.text-gray-800 #{avg_hours_per_day}
+                                            .col-auto
+                                                i.fas.fa-clock.fa-2x.text-gray-300
+                            .col-xl-3.col-md-6.mb-4
+                                .card.border-left-info.shadow.h-100.py-2
+                                    .card-body
+                                        .row.no-gutters.align-items-center
+                                            .col.mr-2
+                                                .text-xs.font-weight-bold.text-info.text-uppercase.mb-1
+                                                    | Online Rank among my friends
+                                                .row.no-gutters.align-items-center
+                                                    .col-auto
+                                                        .h5.mb-0.mr-3.font-weight-bold.text-gray-800 #{rank_mf}
+                                            .col-auto
+                                                i.fas.fa-trophy.fa-2x.text-gray-300
+                            .col-xl-3.col-md-6.mb-4
+                                .card.border-left-warning.shadow.h-100.py-2
+                                    .card-body
+                                        .row.no-gutters.align-items-center
+                                            .col.mr-2
+                                                .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
+                                                    | Longest Single Online (Hours)
+                                                .h5.mb-0.font-weight-bold.text-gray-800 #{longest_online}
+                                            .col-auto
+                                                i.fas.fa-hourglass-end.fa-2x.text-gray-300
+                        .row
+                            .col-xl-8.col-lg-7
+                                .card.shadow.mb-4
+                                    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+                                        h6.m-0.font-weight-bold.text-primary Online Overview
+                                    .card-body
+                                        .chart-area
+                                            canvas#myAreaChart
+                        .row
+                            .col-xl-8.col-lg-7
+                                .card.shadow.mb-4
+                                    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+                                        h6.m-0.font-weight-bold.text-primary Hours Online/Month
+                                    .card-body
+                                        .chart-area
+                                            canvas#myBarChart
+                        .row
+                            .col-xl-8.col-lg-7
+                                .card.shadow.mb-4
+                                    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+                                        h6.m-0.font-weight-bold.text-primary Online Percent
+                                    .card-body
+                                        .chart-pie.pt-4.pb-2
+                                            canvas#myPieChart
+                footer.sticky-footer.bg-white
+                    .container.my-auto
+                        .copyright.text-center.my-auto
+                            span
+                                | Theme provided by 
+                                a(href="https://startbootstrap.com/theme/sb-admin-2") StartBootstrap
+                        .copyright.text-center.my-auto
+                            span Copyright © FFBB 2021
+        a.scroll-to-top.rounded(href="#page-top")
+            i.fas.fa-angle-up
+        script(src="vendor/jquery/jquery.min.js")
+        script(src="vendor/bootstrap/js/bootstrap.bundle.min.js")
+        script(src="vendor/jquery-easing/jquery.easing.min.js")
+        script(src="js/sb-admin-2.min.js")
+        script(src="vendor/chart.js/Chart.min.js")
+        script.
+            function number_format(e,o,r,t){e=(e+"").replace(",","").replace(" ","");var a=isFinite(+e)?+e:0,i=isFinite(+o)?Math.abs(o):0,n=void 0===t?",":t,d=void 0===r?".":r,l="";return(l=(i?function(e,o){var r=Math.pow(10,o);return""+Math.round(e*r)/r}(a,i):""+Math.round(a)).split("."))[0].length>3&&(l[0]=l[0].replace(/\\B(?=(?:\d{3})+(?!\d))/g,n)),(l[1]||"").length<i&&(l[1]=l[1]||"",l[1]+=new Array(i-l[1].length+1).join("0")),l.join(d)}Chart.defaults.global.defaultFontFamily="Nunito",Chart.defaults.global.defaultFontColor="#858796";var ctx=document.getElementById("myAreaChart"),myLineChart=new Chart(ctx,{type:"line",data:{labels:!{online_by_date_x},datasets:[{label:"Hours",lineTension:.3,backgroundColor:"rgba(78, 115, 223, 0.05)",borderColor:"rgba(78, 115, 223, 1)",pointRadius:0,pointBackgroundColor:"rgba(78, 115, 223, 1)",pointBorderColor:"rgba(78, 115, 223, 1)",pointHoverRadius:0,pointHoverBackgroundColor:"rgba(78, 115, 223, 1)",pointHoverBorderColor:"rgba(78, 115, 223, 1)",pointHitRadius:10,pointBorderWidth:2,data:!{online_by_date_y}}]},options:{maintainAspectRatio:!1,layout:{padding:{left:10,right:25,top:25,bottom:0}},scales:{xAxes:[{time:{unit:"Date"},gridLines:{display:!1,drawBorder:!1},ticks:{maxTicksLimit:7}}],yAxes:[{ticks:{maxTicksLimit:5,padding:10,callback:function(e,o,r){return number_format(e,2)+" H"}},gridLines:{color:"rgb(234, 236, 244)",zeroLineColor:"rgb(234, 236, 244)",drawBorder:!1,borderDash:[2],zeroLineBorderDash:[2]}}]},legend:{display:!1},tooltips:{backgroundColor:"rgb(255,255,255)",bodyFontColor:"#858796",titleMarginBottom:10,titleFontColor:"#6e707e",titleFontSize:14,borderColor:"#dddfeb",borderWidth:1,xPadding:15,yPadding:15,displayColors:!1,intersect:!1,mode:"index",caretPadding:10,callbacks:{label:function(e,o){return(o.datasets[e.datasetIndex].label||"")+": "+number_format(e.yLabel,2)}}}}});
+        script.
+            function number_format(a,r,t,e){a=(a+"").replace(",","").replace(" ","");var o=isFinite(+a)?+a:0,n=isFinite(+r)?Math.abs(r):0,i=void 0===e?",":e,d=void 0===t?".":t,l="";return(l=(n?function(a,r){var t=Math.pow(10,r);return""+Math.round(a*t)/t}(o,n):""+Math.round(o)).split("."))[0].length>3&&(l[0]=l[0].replace(/\\B(?=(?:\d{3})+(?!\d))/g,i)),(l[1]||"").length<n&&(l[1]=l[1]||"",l[1]+=new Array(n-l[1].length+1).join("0")),l.join(d)}Chart.defaults.global.defaultFontFamily="Nunito",Chart.defaults.global.defaultFontColor="#858796";var ctx=document.getElementById("myBarChart"),myBarChart=new Chart(ctx,{type:"bar",data:{labels:!{online_by_day_ow_x},datasets:[{label:"Hours Online",backgroundColor:"#4e73df",hoverBackgroundColor:"#2e59d9",borderColor:"#4e73df",data:!{online_by_day_ow_y}}]},options:{maintainAspectRatio:!1,layout:{padding:{left:10,right:25,top:25,bottom:0}},scales:{xAxes:[{time:{unit:"Month"},gridLines:{display:!1,drawBorder:!1},ticks:{maxTicksLimit:6},maxBarThickness:350}],yAxes:[{ticks:{min:0,maxTicksLimit:5,padding:10,callback:function(a,r,t){return number_format(a,2)+" H"}},gridLines:{color:"rgb(234, 236, 244)",zeroLineColor:"rgb(234, 236, 244)",drawBorder:!1,borderDash:[2],zeroLineBorderDash:[2]}}]},legend:{display:!1},tooltips:{titleMarginBottom:10,titleFontColor:"#6e707e",titleFontSize:14,backgroundColor:"rgb(255,255,255)",bodyFontColor:"#858796",borderColor:"#dddfeb",borderWidth:1,xPadding:15,yPadding:15,displayColors:!1,caretPadding:10,callbacks:{label:function(a,r){return(r.datasets[a.datasetIndex].label||"")+": "+number_format(a.yLabel,2)}}}}});
+        script.
+            Chart.defaults.global.defaultFontFamily="Nunito",Chart.defaults.global.defaultFontColor="#858796";var ctx=document.getElementById("myPieChart"),myPieChart=new Chart(ctx,{type:"pie",data:{labels:["Online","Offline"],datasets:[{data:[#{percent_online}, 100 - #{percent_online}],backgroundColor:["#4e73df","#1cc88a","#36b9cc"],hoverBackgroundColor:["#2e59d9","#17a673","#2c9faf"],hoverBorderColor:"rgba(234, 236, 244, 1)"}]},options:{maintainAspectRatio:!1,tooltips:{backgroundColor:"rgb(255,255,255)",bodyFontColor:"#858796",borderColor:"#dddfeb",borderWidth:1,xPadding:15,yPadding:15,displayColors:!1,caretPadding:10}}});
