@@ -17,12 +17,13 @@ html(lang="en")
                     nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
                         form.d-sm-inline-block.form-inline.mr-auto.ml-md-3.my-2.my-md-0.mw-100.navbar-search
                             .container.my-auto
-                                h3 FFBB
+                                a(href="/")
+                                    h3 FFBB
                         ul.navbar-nav.ml-auto
                             li.nav-item.dropdown.no-arrow
                                 a#userDropdown.nav-link.dropdown-toggle(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                     span.mr-2.d-lg-inline.text-gray-600.small #{user_name}
-                                    img.img-profile.rounded-circle(src="vendor/fontawesome-free/svgs/regular/grin-beam.svg")
+                                    img.img-profile.rounded-circle(alt="avatar" src="vendor/fontawesome-free/svgs/regular/grin-beam.svg")
                     .container-fluid
                         .row
                             .col-xl-3.col-md-6.mb-4

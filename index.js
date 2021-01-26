@@ -27,10 +27,11 @@ let UserModel = mongoose.model('Users', new mongoose.Schema({
 ));
 
 let MetaModel = mongoose.model('Metas', new mongoose.Schema({name: String, value: String}));
+let FinderModel = mongoose.model('Finders', new mongoose.Schema({input_x: String, output_y: String}));
 
 app.get('/', function(req,res){
     MetaModel.findOne({name:'db_last_update'}, function (error, result) {
-        res.render('home.pug', {'db_last_update': result.value});
+        res.render('home.pug', {db_last_update: result.value});
     });
 });
 
@@ -57,18 +58,17 @@ app.post('/qq',function(req,res){
     }
 
     PythonShell.run('helper.py', {args:[req.body.query]},function(err, pyResult){
-        console.log(pyResult);
         if(pyResult == null){
             res.redirect('/unknown');
             return;
         }
 
-        UserModel.findOne({ userId: pyResult[0] }, function (error, result) {
+        FinderModel.findOne({ input_x: pyResult[0] }, function (error, result) {
             if(result == null){
                 res.redirect('/unknown');
             }
             else{
-                res.redirect('/search?q=' + result.userId);
+                res.redirect('/search?q=' + result.output_y);
             }
         });
     });
