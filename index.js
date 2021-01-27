@@ -17,6 +17,7 @@ let UserModel = mongoose.model('Users', new mongoose.Schema({
     total_online_hours: Number,
     longest_online: Number,
     total_record_hours: Number,
+    longest_online_between: String,
     rank_mf: Number,
     online_by_day_ow_x: String,
     online_by_day_ow_y: String,
@@ -84,6 +85,10 @@ app.get('/400', function(req,res){
 
 app.get('/robots.txt', function(req,res){
     res.end('User-agent: *\nDisallow: /\n');
+});
+
+app.get('/favicon.ico', function(req,res){
+    res.sendFile('static/img/laugh_wink.ico',{root:'.'});
 });
 
 app.get('*', function (req, res) {
