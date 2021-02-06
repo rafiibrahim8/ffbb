@@ -36,8 +36,6 @@ app.get('/', function(req,res){
         result.forEach(i=>{
             temp_var[i.name] = i.value;
         });
-        console.log(temp_var);
-        
         res.render('home.pug', temp_var);
     });
 });
