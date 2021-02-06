@@ -31,8 +31,12 @@ let MetaModel = mongoose.model('Metas', new mongoose.Schema({name: String, value
 let FinderModel = mongoose.model('Finders', new mongoose.Schema({input_x: String, output_y: String}));
 
 app.get('/', function(req,res){
-    MetaModel.findOne({name:'db_last_update'}, function (error, result) {
-        res.render('home.pug', {db_last_update: result.value});
+    MetaModel.find({name:['db_last_update','ana_start_date']}, function (error, result) {
+        temp_var = {}
+        result.forEach(i=>{
+            temp_var[i.name] = i.value;
+        });
+        res.render('home.pug', temp_var);
     });
 });
 
